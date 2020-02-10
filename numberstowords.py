@@ -1,5 +1,5 @@
 def hundreds(number_str, count):
-	Units = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"]
+	Units = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"]
 	Tens = ["","Teens","Twenty","Thirty","Fourty","Fithty","Sixty","Seventy","Eighty","Ninety"]
 	Teens = ["Ten","Eleven","Twelve","Therteen","Fourteen","Fithteen","Sixteen","Seventeen","Eighteen","Nineteen"]
 	big = ["Thousand,", "Million,", "Billion,", "Trillion,", "Quadrillion,", "Quintillion,", "Sextillion,", "Septillion,", "Octillion,", "Nonillion,", "Decillion,"]
@@ -75,7 +75,7 @@ def decimal(fraction):
                 out_str = ""
                 for char in fraction:
                         out_str += " " + Units[int(char)] 
-                return " Point" + out_str
+                return " point" + out_str
 	
 def numb_to_text(number, mode=''):
         neg = False
@@ -99,19 +99,8 @@ def numb_to_text(number, mode=''):
                 return str(number) + " = " + negative_str(neg) + hundreds(number_str, 0) + decimal(fraction)
 
 
-#for x in range(0,1000):
-	#print(numb_to_text(x))
-	#print("---------------------------")
-
-#val = 1
-#for x in range(0,36):
-	#print(numb_to_text(val))
-	#print("---------------------------")
-	#val *= 10
-	
-	
-print("Paul's Mark out of ten: \n\n"+numb_to_text(-10.265,''))
-print("---------------------------")
-
-	
-
+print(numb_to_text(0))
+print(numb_to_text(10))
+print(numb_to_text(-110))
+print(numb_to_text(0.2))
+print(numb_to_text(-99999.02))
