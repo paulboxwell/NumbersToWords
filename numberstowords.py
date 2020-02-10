@@ -60,13 +60,43 @@ def hundreds(number_str, count):
 			output_string = output_string[:len(output_string)-1]
 	
 	return output_string
+
+def negative_str(neg):
+        if(neg):
+                return "Negative "
+        else:
+                return ""
+        
+def decimal(fraction):
+        if(fraction == ""):
+                return ""
+        else:
+                Units = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"]
+                out_str = ""
+                for char in fraction:
+                        out_str += " " + Units[int(char)] 
+                return " Point" + out_str
 	
 def numb_to_text(number, mode=''):
+        neg = False
+        if number < 0:
+                neg = True
+
         number_str = str(number)
+
+        if neg:
+                number_str = number_str[1:]
+        dec_point = number_str.find(".")
+        fraction = ""
+        if dec_point > -1:
+                fraction = number_str[dec_point+1:]
+                number_str = number_str[:dec_point]
+                
+
         if mode=="plain":
-                return hundreds(number_str, 0)
+                return negative_str(neg) + hundreds(number_str, 0) + decimal(fraction)
         else:
-                return number_str + " = " + hundreds(number_str, 0)
+                return str(number) + " = " + negative_str(neg) + hundreds(number_str, 0) + decimal(fraction)
 
 
 #for x in range(0,1000):
@@ -80,7 +110,7 @@ def numb_to_text(number, mode=''):
 	#val *= 10
 	
 	
-print("Paul's Mark out of ten: \n\n"+numb_to_text(999999999999999999999999999999999999,'plain'))
+print("Paul's Mark out of ten: \n\n"+numb_to_text(-10.265,''))
 print("---------------------------")
 
 	
