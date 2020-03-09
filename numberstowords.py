@@ -69,6 +69,7 @@ def negative_str(neg):
 		
 def decimal(fraction):
 		if(fraction == ""):
+				return ""
 		else:
 				Units = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"]
 				out_str = ""
