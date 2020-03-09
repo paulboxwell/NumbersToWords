@@ -62,41 +62,47 @@ def hundreds(number_str, count):
 	return output_string
 
 def negative_str(neg):
-        if(neg):
-                return "Negative "
-        else:
-                return ""
-        
+		if(neg):
+				return "Negative "
+		else:
+				return ""
+		
 def decimal(fraction):
-        if(fraction == ""):
-                return ""
-        else:
-                Units = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"]
-                out_str = ""
-                for char in fraction:
-                        out_str += " " + Units[int(char)] 
-                return " point" + out_str
+		if(fraction == ""):
+		else:
+				Units = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"]
+				out_str = ""
+				for char in fraction:
+						out_str += " " + Units[int(char)] 
+				return " point" + out_str
 	
 def numb_to_text(number, mode=''):
-        neg = False
-        if number < 0:
-                neg = True
+		#Is Number Negative?
+		neg = False
+		if number < 0:
+				neg = True
 
-        number_str = str(number)
+		number_str = str(number)
 
-        if neg:
-                number_str = number_str[1:]
-        dec_point = number_str.find(".")
-        fraction = ""
-        if dec_point > -1:
-                fraction = number_str[dec_point+1:]
-                number_str = number_str[:dec_point]
-                
-
-        if mode=="plain":
-                return negative_str(neg) + hundreds(number_str, 0) + decimal(fraction)
-        else:
-                return str(number) + " = " + negative_str(neg) + hundreds(number_str, 0) + decimal(fraction)
+		#Trim '-' from number
+		if neg:
+				number_str = number_str[1:]
+				
+		#Is Number a Fraction?
+		dec_point = number_str.find(".")
+		fraction = ""
+		if dec_point > -1:
+				fraction = number_str[dec_point+1:]
+				number_str = number_str[:dec_point]
+		
+		#Build up output string
+		output_string = negative_str(neg) + hundreds(number_str, 0) + decimal(fraction)
+		
+		#Display mode
+		if mode=="plain":
+				return output_string
+		else:
+				return str(number) + " = " + output_string
 
 
 print(numb_to_text(0))
