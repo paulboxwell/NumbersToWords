@@ -117,12 +117,17 @@ def index_of_list(list, search):
 	
 	return matched_index
 
+def Classify_Units(word):
+	Units = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "naught"]
+	index_units = index_of_list(Units,word) %10
+	return index_units
+
 def classify(word, current):
 	Units = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten","eleven","twelve","thirteen","fourteen","fithteen","sixteen","seventeen","eighteen","nineteen"]
 	Tens = ["twenty","thirty","fourty","fithty","sixty","seventy","eighty","ninety"]
-	Other = ["and","hundred","negative","minus"]
+	Other = ["and","hundred","negative","minus","point"]
 
-	
+	point = False
 	output = 0
 
 	index_units = index_of_list(Units,word)
@@ -139,9 +144,12 @@ def classify(word, current):
 			output = current
 		elif index_other == 1:
 			output = 100 * current
+		elif index_other == 4:
+			#point
+			output = current
+			point = True
 	
-	
-	return output
+	return output, point
 
 
 def text_to_numb(number_str, mode=''):
@@ -150,10 +158,11 @@ def text_to_numb(number_str, mode=''):
 
 	words = number_str.split(" ")
 
-	#print(words)
-
 	sum = 0
+	point = False
 	neg = 1
+
+	decimal_place = 0.1
 
 	if (index_of_list(words,"negative") > -1):
 		neg = -1
@@ -161,8 +170,11 @@ def text_to_numb(number_str, mode=''):
 		neg = -1
 
 	for w in words:
-		sum = classify(w, sum)
-	
+		if point == False:
+			sum,point = classify(w, sum)
+		else:
+			sum += Classify_Units(w) * decimal_place
+			decimal_place *= 0.1
 	
 	if sum == -1:
 		return "Error: the number '" + number_str + "' was not converted to a valid number"
@@ -190,3 +202,4 @@ print(text_to_numb("thirty three"))
 print(text_to_numb("fourty two"))
 print(text_to_numb("two hundred and fourty two"))
 print(text_to_numb("minus two hundred and fourty two"))
+print(text_to_numb("minus two hundred and fourty two point eight"))

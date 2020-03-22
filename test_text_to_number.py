@@ -18,9 +18,15 @@ def test_tens():
 def test_hun():
     assert numberstowords.text_to_numb("One Hundred and Ten", 'plain') == 110
 
+def test_hun_2():
+    assert numberstowords.text_to_numb("Nine Hundred and Eighty four", 'plain') == 984
+
 def test_neg_1():
     assert numberstowords.text_to_numb("Negative One Hundred and Ten", 'plain') == -110
 
 def test_dec_1():
     assert numberstowords.text_to_numb("Zero point Two", 'plain') == 0.2
+
+def test_dec_2():
+    assert numberstowords.text_to_numb("Zero point Naught One Two Three Four Five Six Seven Eight Nine", 'plain') == 0.0123456789
 
