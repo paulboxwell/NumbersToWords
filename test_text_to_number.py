@@ -30,3 +30,12 @@ def test_dec_1():
 def test_dec_2():
     assert numberstowords.text_to_numb("Zero point Naught One Two Three Four Five Six Seven Eight Nine", 'plain') == 0.0123456789
 
+def test_dec_3():
+    assert numberstowords.text_to_numb("Negative One Hundred and Ten point Naught One Two Three Four Five Six Seven Eight Nine", 'plain') == -110.0123456789
+
+def test_dec_4():
+    assert numberstowords.text_to_numb("Zero point Seven One Zero Six One One Seven Nine Eight Two One Three One One Three", 'plain') == 0.710611798213113
+
+def test_dec_5():
+    assert numberstowords.text_to_numb("Zero point Seven Nine Eight Two One Three One One Three Two", 'plain') == 0.7982131132
+

@@ -14,7 +14,7 @@ def hundreds(number_str, count):
 	
 	if(number_str==""):
 		return output_string
-
+	
 	t = Tens[int(number_str[len(number_str)-1])]
 	number_str = number_str[:len(number_str)-1]
 	
@@ -162,7 +162,7 @@ def text_to_numb(number_str, mode=''):
 	point = False
 	neg = 1
 
-	decimal_place = 0.1
+	decimal_place = True
 
 	if (index_of_list(words,"negative") > -1):
 		neg = -1
@@ -173,9 +173,23 @@ def text_to_numb(number_str, mode=''):
 		if point == False:
 			sum,point = classify(w, sum)
 		else:
-			sum += Classify_Units(w) * decimal_place
-			decimal_place *= 0.1
+			#sum += Classify_Units(w) * decimal_place
+			#decimal_place *= 0.1
+			txt = str(sum)
+			
+			if(decimal_place):
+				txt += "."
+				decimal_place = False
+			else:
+				txt = txt[:len(txt)-1]
+			txt +=str(Classify_Units(w)) + "1"
+			sum = float(txt)
 	
+	if decimal_place == False:
+		txt = str(sum)
+		txt = txt[:len(txt)-1]
+		sum = float(txt)
+
 	if sum == -1:
 		return "Error: the number '" + number_str + "' was not converted to a valid number"
 	elif mode=="plain":
@@ -191,7 +205,9 @@ print(numb_to_text(-110))
 print(numb_to_text(0.2))
 print(numb_to_text(-99999.02))
 
-
+print(text_to_numb("Zero"))
+print(text_to_numb("Naught"))
+print(text_to_numb("Zero point one"))
 print(text_to_numb("One"))
 print(text_to_numb("twO"))
 print(text_to_numb("Three"))
@@ -203,3 +219,26 @@ print(text_to_numb("fourty two"))
 print(text_to_numb("two hundred and fourty two"))
 print(text_to_numb("minus two hundred and fourty two"))
 print(text_to_numb("minus two hundred and fourty two point eight"))
+
+
+
+from random import random
+fails = 0
+passes = 0
+for i in range(0, 100):
+	ini_num = random()
+	txt = numb_to_text(ini_num,"plain")
+	num = text_to_numb(txt,"plain")
+	print(str(ini_num) + " " + txt + " " + str(num))
+	if num == ini_num:
+		print("Pass")
+		passes += 1
+	else:
+		print("Fail")
+		fails += 1
+	
+
+
+print("Results - Passes: " + str(passes) + "  Fails: " + str(fails))
+
+print(text_to_numb("Negative One Hundred and Ten point Naught One Two Three Four Five Six Seven Eight Nine", 'plain'))
