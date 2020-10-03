@@ -11,5 +11,6 @@
     "python.testing.unittestEnabled": false,
     "python.testing.pytestArgs": [
         "."
-    ]
+    ],
+    "python.pythonPath": "C:\\Users\\paul-\\AppData\\Local\\Programs\\Python\\Python37-32\\python.exe"
 }

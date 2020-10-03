@@ -30,3 +30,11 @@ def test_dec_1():
 def test_dec_2():
     assert numberstowords.text_to_numb("Zero point Naught One Two Three Four Five Six Seven Eight Nine", 'plain') == 0.0123456789
 
+def test_missing_and():
+    assert numberstowords.text_to_numb("One Hundred Ten", 'plain') == 110
+
+def test_random_pad():
+    assert numberstowords.text_to_numb("One    Hundred Ten", 'plain') == 110
+
+def test_mix():
+    assert numberstowords.text_to_numb(" one thousand one hundred 5", 'plain') == 1105

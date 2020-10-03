@@ -19,7 +19,7 @@ def hundreds(number_str, count):
 	number_str = number_str[:len(number_str)-1]
 	
 	if(t!=""):
-		if(u!=""):
+		if(u!="Zero"):
 			output_string = t + " " + output_string
 		else:
 			output_string = t
@@ -102,6 +102,20 @@ def numb_to_text(number, mode=''):
 	#Display mode
 	if mode=="plain":
 		return output_string
+	elif mode=="pounds":
+		output_string = hundreds(number_str, 0)
+		if output_string == "One":
+			output_string += " Pound"
+		else:
+			output_string += " Pounds"
+		
+		output_string = negative_str(neg) + output_string
+		
+		if fraction != "":
+			if len(fraction) == 1:
+				fraction += "0"
+			output_string += " " + hundreds(fraction, 0) + " Pence"
+		return output_string
 	else:
 		return str(number) + " = " + output_string
 
@@ -148,6 +162,8 @@ def classify(word, current):
 			#point
 			output = current
 			point = True
+		else:
+			output = current
 	
 	return output, point
 
@@ -183,23 +199,30 @@ def text_to_numb(number_str, mode=''):
 	else:
 		return number_str + " = " + str(sum * neg)
 
+def main():
+	print(numb_to_text(0))
+	print(numb_to_text(10))
+	print(numb_to_text(-110))
+	print(numb_to_text(0.2))
+	print(numb_to_text(-99999.02))
 
 
-print(numb_to_text(0))
-print(numb_to_text(10))
-print(numb_to_text(-110))
-print(numb_to_text(0.2))
-print(numb_to_text(-99999.02))
+	print(text_to_numb("One"))
+	print(text_to_numb("twO"))
+	print(text_to_numb("Three"))
+	print(text_to_numb("thirteen"))
+	print(text_to_numb("FAILNUMBER"))
+	print(text_to_numb("twenty"))
+	print(text_to_numb("thirty three"))
+	print(text_to_numb("fourty two"))
+	print(text_to_numb("two hundred and fourty two"))
+	print(text_to_numb("minus two hundred and fourty two"))
+	print(text_to_numb("minus two hundred and fourty two point eight"))
+
+	print(numb_to_text(3.012345, 'pounds'))
+
+	print(hundreds("3", 0))
+if __name__== "__main__":
+	main()
 
 
-print(text_to_numb("One"))
-print(text_to_numb("twO"))
-print(text_to_numb("Three"))
-print(text_to_numb("thirteen"))
-print(text_to_numb("FAILNUMBER"))
-print(text_to_numb("twenty"))
-print(text_to_numb("thirty three"))
-print(text_to_numb("fourty two"))
-print(text_to_numb("two hundred and fourty two"))
-print(text_to_numb("minus two hundred and fourty two"))
-print(text_to_numb("minus two hundred and fourty two point eight"))
