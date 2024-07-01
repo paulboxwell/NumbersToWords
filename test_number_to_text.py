@@ -60,3 +60,21 @@ def test_pounds():
 
 def test_pounds_and_pence():
     assert numberstowords.numb_to_text(3.20, 'pounds') ==  "Three Pounds Twenty Pence"
+
+def test_thousands():
+    assert numberstowords.numb_to_text(1000, 'plain') == "One Thousand"
+
+def test_thousands_2():
+    assert numberstowords.numb_to_text(1100, 'plain') == "Two Thousand, One Hundred"
+
+def test_thousands_3():
+    assert numberstowords.numb_to_text(3245, 'plain') == "Three Thousand, Two Hundred and Fourty Five"
+
+def test_millions():
+    assert numberstowords.numb_to_text(1000000, 'plain') == "One Million"
+
+def test_millions_2():
+    assert numberstowords.numb_to_text(1000100, 'plain') == "One Million, One Hundred"
+
+def test_millions_3():
+    assert numberstowords.numb_to_text(1001001, 'plain') == "One Million, One Thousand and One"

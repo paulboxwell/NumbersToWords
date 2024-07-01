@@ -36,5 +36,24 @@ def test_missing_and():
 def test_random_pad():
     assert numberstowords.text_to_numb("One    Hundred Ten", 'plain') == 110
 
+def test_no_tens():
+    assert numberstowords.text_to_numb("One Thousand One Hundred", 'plain') == 1100
+
+def test_no_hundreds():
+    assert numberstowords.text_to_numb("One Thousand One", 'plain') == 1001
+
+def test_no_units():
+    assert numberstowords.text_to_numb("One Thousand Ten", 'plain') == 1010
+
+def test_millions():
+    assert numberstowords.text_to_numb("One Million Three Thousand Ten", 'plain') == 1003010
+
+
 def test_mix():
-    assert numberstowords.text_to_numb(" one thousand one hundred 5", 'plain') == 1105
+    assert numberstowords.text_to_numb("5 hundred", 'plain') == 500
+
+def test_mix_complex():
+    assert numberstowords.text_to_numb("5 hundred 13", 'plain') == 513
+
+def test_mix_complex_2():
+    assert numberstowords.text_to_numb("5 hundred and 3", 'plain') == 503

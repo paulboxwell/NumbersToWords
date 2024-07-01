@@ -186,6 +186,13 @@ def text_to_numb(number_str, mode=''):
 		neg = -1
 
 	for w in words:
+		try:
+			i = int(w)
+			w = numb_to_text(i, 'plain').lower()
+			print("number found" + w)
+		except:
+			print("except " + w)
+
 		if point == False:
 			sum,point = classify(w, sum)
 		else:
@@ -214,27 +221,32 @@ def text_to_numb(number_str, mode=''):
 		return number_str + " = " + str(sum * neg)
 
 def main():
-	print(numb_to_text(0))
-	print(numb_to_text(10))
-	print(numb_to_text(-110))
-	print(numb_to_text(0.2))
-	print(numb_to_text(-99999.02))
+
+	print(text_to_numb("1 thousand", 'plain'))
+
+	print(text_to_numb(" one thousand one hundred", 'plain'))
+
+	#print(numb_to_text(0))
+	#print(numb_to_text(10))
+	#print(numb_to_text(-110))
+	#print(numb_to_text(0.2))
+	#print(numb_to_text(-99999.02))
 
 
-	print(text_to_numb("One"))
-	print(text_to_numb("twO"))
-	print(text_to_numb("Three"))
-	print(text_to_numb("thirteen"))
-	print(text_to_numb("FAILNUMBER"))
-	print(text_to_numb("twenty"))
-	print(text_to_numb("thirty three"))
-	print(text_to_numb("fourty two"))
-	print(text_to_numb("two hundred and fourty two"))
-	print(text_to_numb("minus two hundred and fourty two"))
-	print(text_to_numb("minus two hundred and fourty two point eight"))
+	#print(text_to_numb("One"))
+	#print(text_to_numb("twO"))
+	#print(text_to_numb("Three"))
+	#print(text_to_numb("thirteen"))
+	#print(text_to_numb("FAILNUMBER"))
+	#print(text_to_numb("twenty"))
+	#print(text_to_numb("thirty three"))
+	#print(text_to_numb("fourty two"))
+	#print(text_to_numb("two hundred and fourty two"))
+	#print(text_to_numb("minus two hundred and fourty two"))
+	#print(text_to_numb("minus two hundred and fourty two point eight"))
 
-	print(numb_to_text(3.012345, 'pounds'))
+	#print(numb_to_text(3.012345, 'pounds'))
 
-	print(hundreds("3", 0))
+	#print(hundreds("3", 0))
 if __name__== "__main__":
 	main()
