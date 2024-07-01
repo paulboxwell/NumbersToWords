@@ -57,3 +57,6 @@ def test_mix_complex():
 
 def test_mix_complex_2():
     assert numberstowords.text_to_numb("5 hundred and 3", 'plain') == 503
+
+def test_zeros():
+    assert numberstowords.text_to_numb("Zero Zero Zero Zero Zero", 'plain') == 0

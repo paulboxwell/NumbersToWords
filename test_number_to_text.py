@@ -78,3 +78,6 @@ def test_millions_2():
 
 def test_millions_3():
     assert numberstowords.numb_to_text(1001001, 'plain') == "One Million, One Thousand and One"
+
+def test_zero():
+    assert numberstowords.hundreds("0000000000000000", 0) == "Zero"
